@@ -1,0 +1,157 @@
+/* src/pages/home.css */
+
+.home-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100vh;
+  padding: 0 5%;
+  color: white;
+  flex-wrap: wrap;
+}
+
+.home-text {
+  flex: 1;
+  /* padding: 2rem; */
+}
+
+.home-text h1 {
+  font-size: 4rem;
+  margin-top: 1.5rem;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.home-text p {
+  font-size: 2rem;
+  font-weight: bold;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.home-text a {
+  font-size: 1.5rem;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.home-text a1 {
+  font-size: 1.5 rem;
+  line-height: 1.6;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+
+
+
+.home-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+
+}
+
+.home-image img {
+  max-width: 100%;
+  height: 60vh;
+  border-radius: 10px;
+  /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); */
+}
+
+/* Carousel wrapper styling */
+.carousel-container {
+  width: 100%;
+  padding: 5rem;
+}
+
+/* Dark carousel theme */
+.custom-carousel .slide img {
+  border-radius: 10px;
+  object-fit: cover;
+  height: 100%;
+  /* background-color: black; */
+}
+
+.custom-carousel .control-arrow,
+.custom-carousel .control-arrow:hover {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.custom-carousel .carousel .control-dots .dot {
+  background: white;
+}
+
+.custom-carousel1 .slide img {
+  border-radius: 10px;
+  object-fit: cover;
+  height: 60vh;
+  /* background-color: black; */
+}
+
+.home-video-section {
+  text-align: center;
+  padding: 80px 10%;
+  /* background-color: #111; */
+  color: #fff;
+}
+
+.video-text h2 {
+  font-size: 4rem;
+  margin-bottom: 2rem;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.video-text p {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.video-container iframe {
+  border-radius: 10px;
+  max-width: 100%;
+  height: 100%;
+  aspect-ratio: 16 / 9;
+}
+
+.home-footer {
+  background-color: #000000;
+  color: #fff;
+  padding: 40px 10%;
+  font-size: 0.95rem;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.footer-column {
+  flex: 1 1 250px;
+  min-width: 250px;
+}
+
+.footer-column h3 {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+.footer-column a {
+  color: #1e90ff;
+  text-decoration: none;
+}
+
+.footer-column a:hover {
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  margin-top: 30px;
+  text-align: center;
+  border-top: 1px solid #000000;
+  padding-top: 20px;
+  font-size: 0.85rem;
+}
+
