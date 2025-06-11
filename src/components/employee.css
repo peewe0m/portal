@@ -8,72 +8,74 @@
   font-family: 'Segoe UI', sans-serif;
 }
 
+/* Search + Add row container */
+.search-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
 .search-container {
+  flex: 1;
   background-color: #1e1e1e;
   padding: 1rem;
   border-radius: 8px;
-  margin-bottom: 2rem;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
-  
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05); 
+  display: flex;
+  align-items: center;
 }
 
 .search-container input {
-  width: 98%;
+  width: 83%;
   padding: 0.75rem;
-  height: 3vh;
   font-size: 1rem;
   border: none;
   border-radius: 6px;
   background-color: #2c2c2c;
   color: #fff;
+  border: 1px solid #333;
 }
 
 .search-container input::placeholder {
   color: #aaa;
 }
 
-.employee-table {
-  background-color: #1c1c1c;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 0 12px rgba(255, 255, 255, 0.03);
-}
-
-.table-header,
-.table-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  padding: 1rem;
-}
-
-.table-header {
-  background-color: #292929;
+.add-button {
+  background-color: #504f4f;
+  color: white;
+  padding: 13px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
   font-weight: bold;
-  border-bottom: 1px solid #444;
+  font-size: 0.85rem;
+  white-space: nowrap;
 }
 
-.table-row {
-  border-bottom: 1px solid #333;
+.add-button:hover {
+  background-color: #333333;
 }
 
-.table-row:hover {
-  background-color: #2a2a2a;
-}
-
+/* Employee Table */
 .employee-table {
   margin-top: 20px;
-  color: white;
-  background-color: #1e1e1e;
+  background-color: #1c1c1c;
   border-radius: 8px;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.03);
   padding: 10px;
+  color: white;
 }
 
 .table-header,
 .table-row {
   display: grid;
-  grid-template-columns: .7fr 2fr 2fr; /* ID, Name, Role */
-  padding: 10px 10px;
+  grid-template-columns: 0.7fr 2fr 2fr 0.5fr; /* ID, Name, Role, Action */
+  padding: 10px;
   border-bottom: 1px solid #444;
+  align-items: center;
 }
 
 .table-header {
@@ -83,5 +85,121 @@
 }
 
 .table-row:hover {
-  background-color: #333;
+  background-color: #2a2a2a;
 }
+
+/* Trash Icon */
+.delete-icon {
+  color: #504f4f;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+  justify-self: end;
+}
+
+.delete-icon:hover {
+  color: #ff3333; /* Stronger red on hover */
+}
+
+
+/* Clickable name */
+.clickable-name {
+  color: #66b2ff;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.clickable-name:hover {
+  color: #99ccff;
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: #1e1e1e;
+  color: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  width: 1000px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  text-align: left;
+  position: relative;
+}
+
+.modal-content h2 {
+  margin-top: 0;
+  color: #66b2ff;
+}
+
+.modal-content button {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #292929;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.modal-content button:hover {
+  background-color: #3a3a3a;
+}
+
+.modal-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem 1.5rem;
+  margin-top: 1rem;
+}
+
+.modal-grid p {
+  margin: 0;
+  font-size: 1rem;
+  color: #ccc;
+}
+
+.modal-grid strong {
+  color: #fff;
+}
+
+.modal-actions {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.modal-actions {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+.modal-actions button {
+  width: 500px; /* Reduced width */
+  padding: 10px 0;
+  background-color: #504f4f;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 0.85rem;
+  transition: background-color 0.2s ease;
+  text-align: center;
+}
+
