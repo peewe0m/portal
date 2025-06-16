@@ -4,12 +4,15 @@ import { useNavigate } from 'react-router-dom';
 import './dashboard.css';
 import Home from '../components/home';
 import Employee from '../components/employee';
+// Create and import DTR component if it exists
+import DTR from '../components/dtr'; // Make sure this file/component exists
 
 const Dashboard = () => {
   const [activePanel, setActivePanel] = useState('Home');
   const navigate = useNavigate();
 
-  const buttons = ['Home', 'Employee', 'Biometrics', 'System Logs', 'Settings', 'Logout'];
+  // ✅ Added "DTR" to the buttons array
+  const buttons = ['Home', 'Employee', 'DTR', 'Biometrics', 'System Logs', 'Settings', 'Logout'];
 
   const handleButtonClick = (btn) => {
     if (btn === 'Logout') {
@@ -25,9 +28,9 @@ const Dashboard = () => {
         return <Home />;
       case 'Employee':
         return <Employee />;
+      case 'DTR':
+        return <DTR />; // ✅ Rende
       case 'Biometrics':
-        return <div className="main-panel">Biometrics Panel</div>;
-      case 'System Logs':
         return <div className="main-panel">System Logs Panel</div>;
       case 'Settings':
         return <div className="main-panel">Settings Panel</div>;
@@ -54,7 +57,6 @@ const Dashboard = () => {
       </aside>
 
       <main className="main-content">
-       
         {renderPanel()}
       </main>
     </div>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './employee.css';
-import { FaTrash } from 'react-icons/fa';
+import { FaTrash, FaEdit } from 'react-icons/fa';
 
 const Employee = () => {
   const [search, setSearch] = useState('');
@@ -23,11 +23,12 @@ const Employee = () => {
     fetchEmployees();
   }, []);
 
-  const fetchEmployeeDetails = async (id) => {
+  const fetchEmployeeDetails = async (id, openInEditMode = false) => {
     try {
       const res = await axios.get(`http://localhost:5000/api/employees/${id}`);
       setSelectedEmployee(res.data);
       setModalVisible(true);
+      setEditMode(openInEditMode);
     } catch (err) {
       console.error('Error fetching employee details:', err);
     }
@@ -43,10 +44,6 @@ const Employee = () => {
     } catch (err) {
       console.error('Error deleting employee:', err);
     }
-  };
-
-  const handleEdit = () => {
-    setEditMode(true);
   };
 
   const handleSave = async () => {
@@ -95,10 +92,10 @@ const Employee = () => {
 
       <div className="employee-table">
         <div className="table-header">
-          <span>Employee no.</span>
-          <span>Name</span>
+          <span>ID</span>
+          <span>Employee</span>
           <span>Role</span>
-          <span>Action</span>
+          
         </div>
         {filteredEmployees.map((emp) => (
           <div key={emp.id} className="table-row">
@@ -107,11 +104,18 @@ const Employee = () => {
               {emp.name}
             </span>
             <span>{emp.role}</span>
-            <span>
+            <span style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+              <FaEdit
+                className="edit-icon"
+                onClick={() => fetchEmployeeDetails(emp.id, true)}
+                title="Edit"
+                style={{ cursor: 'pointer' }}
+              />
               <FaTrash
                 className="delete-icon"
                 onClick={() => handleDelete(emp.id)}
                 title="Delete"
+                style={{ cursor: 'pointer' }}
               />
             </span>
           </div>
@@ -146,7 +150,7 @@ const Employee = () => {
                 </>
               ) : (
                 <>
-                  <button onClick={handleEdit}>Edit</button>
+                    
                   <button onClick={() => setModalVisible(false)}>Close</button>
                 </>
               )}

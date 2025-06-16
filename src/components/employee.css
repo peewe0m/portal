@@ -89,7 +89,7 @@
 }
 
 /* Trash Icon */
-.delete-icon {
+.edit-icon .delete-icon {
   color: #504f4f;
   cursor: pointer;
   font-size: 1.1rem;
@@ -100,6 +100,10 @@
 .delete-icon:hover {
   color: #ff3333; /* Stronger red on hover */
 }
+.edit-icon:hover {
+  color: #4caf50;
+}
+
 
 
 /* Clickable name */
@@ -183,14 +187,16 @@
 }
 
 .modal-actions {
+  align-items: center;
   margin-top: 2rem;
   display: flex;
   gap: 1rem;
   justify-content: flex-end;
+  
 }
 
 .modal-actions button {
-  width: 500px; /* Reduced width */
+  width: 100px; /* Reduced width */
   padding: 10px 0;
   background-color: #504f4f;
   color: white;

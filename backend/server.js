@@ -7,6 +7,7 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
+// MySQL connection
 const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
@@ -15,48 +16,61 @@ const db = mysql.createConnection({
 });
 
 db.connect(err => {
-  if (err) throw err;
+  if (err) {
+    console.error('MySQL connection error:', err);
+    process.exit(1); // Exit if DB connection fails
+  }
   console.log('MySQL connected...');
 });
+
+// ==================== ROUTES ====================
 
 // Login route
 app.post('/api/login', (req, res) => {
   const { email, password } = req.body;
+
+  if (!email || !password) {
+    return res.status(400).json({ success: false, message: 'Email and password are required.' });
+  }
+
   const query = 'SELECT * FROM users WHERE email = ? AND password = ?';
 
   db.query(query, [email, password], (err, results) => {
-    if (err) return res.status(500).json({ success: false, message: 'DB error' });
+    if (err) {
+      console.error('Login DB error:', err);
+      return res.status(500).json({ success: false, message: 'Internal server error' });
+    }
 
     if (results.length > 0) {
       res.json({ success: true, user: results[0] });
     } else {
-      res.json({ success: false, message: 'Invalid credentials' });
+      res.status(401).json({ success: false, message: 'Invalid credentials' });
     }
   });
 });
 
-// Get brief employee list
+// Get all employees
 app.get('/api/employees', (req, res) => {
-  const query = 'SELECT id, name, role FROM employees';
+  const query = 'SELECT ID, Name, Role FROM employees';
 
   db.query(query, (err, results) => {
     if (err) {
       console.error('Error fetching employees:', err);
-      return res.status(500).json({ success: false, message: 'Database error' });
+      return res.status(500).json({ success: false, message: 'Internal server error' });
     }
     res.json(results);
   });
 });
 
-// Get full employee details by ID
+// Get employee by ID
 app.get('/api/employees/:id', (req, res) => {
   const { id } = req.params;
   const query = 'SELECT * FROM employees WHERE id = ?';
 
   db.query(query, [id], (err, results) => {
     if (err) {
-      console.error('Error fetching employee by ID:', err);
-      return res.status(500).json({ success: false, message: 'Database error' });
+      console.error('Error fetching employee:', err);
+      return res.status(500).json({ success: false, message: 'Internal server error' });
     }
 
     if (results.length === 0) {
@@ -67,22 +81,27 @@ app.get('/api/employees/:id', (req, res) => {
   });
 });
 
-// ✅ Add a new employee
+// Add new employee
 app.post('/api/employees', (req, res) => {
   const { name, role } = req.body;
+
+  if (!name || !role) {
+    return res.status(400).json({ success: false, message: 'Name and role are required.' });
+  }
+
   const query = 'INSERT INTO employees (name, role) VALUES (?, ?)';
 
   db.query(query, [name, role], (err, result) => {
     if (err) {
       console.error('Error adding employee:', err);
-      return res.status(500).json({ success: false, message: 'Database error' });
+      return res.status(500).json({ success: false, message: 'Internal server error' });
     }
 
     res.status(201).json({ success: true, id: result.insertId });
   });
 });
 
-// ✅ Update an employee by ID
+// Update employee
 app.put('/api/employees/:id', (req, res) => {
   const { id } = req.params;
   const updatedData = req.body;
@@ -92,14 +111,18 @@ app.put('/api/employees/:id', (req, res) => {
   db.query(query, [updatedData, id], (err, result) => {
     if (err) {
       console.error('Error updating employee:', err);
-      return res.status(500).json({ success: false, message: 'Database error' });
+      return res.status(500).json({ success: false, message: 'Internal server error' });
+    }
+
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ success: false, message: 'Employee not found' });
     }
 
     res.json({ success: true, message: 'Employee updated successfully' });
   });
 });
 
-// ✅ Delete an employee by ID
+// Delete employee
 app.delete('/api/employees/:id', (req, res) => {
   const { id } = req.params;
   const query = 'DELETE FROM employees WHERE id = ?';
@@ -107,11 +130,23 @@ app.delete('/api/employees/:id', (req, res) => {
   db.query(query, [id], (err, result) => {
     if (err) {
       console.error('Error deleting employee:', err);
-      return res.status(500).json({ success: false, message: 'Database error' });
+      return res.status(500).json({ success: false, message: 'Internal server error' });
+    }
+
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ success: false, message: 'Employee not found' });
     }
 
     res.json({ success: true, message: 'Employee deleted successfully' });
   });
 });
 
-app.listen(5000, () => console.log('Server running on port 5000'));
+// ==================== DTR ROUTES ====================
+
+
+
+// Start server
+const PORT = 3001;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
