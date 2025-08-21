@@ -1,0 +1,240 @@
+/* Main container */
+.leave-container {
+  width: 160vh;
+  height: 100vh;
+  overflow: hidden;
+  padding: 20px;
+  background-color: #111;
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-sizing: border-box;
+  
+}
+
+/* Page title */
+.leave-title {
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+  font-weight: 600;
+  text-align: left;
+}
+
+/* Table container */
+.table-wrapper {
+  height: calc(95vh - 80px);
+  /* overflow: auto; */
+  background-color: #181818;
+  border-radius: 8px;
+  box-shadow: 0 0 6px #000;
+  padding: 0.5rem;
+   border: 3px solid #888;
+}
+
+/* Leave Table */
+.leave-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8rem;
+  table-layout: fixed;
+   
+}
+
+/* Headers & cells */
+.leave-table th,
+.leave-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid #333;
+  text-align: left;
+  vertical-align: middle;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  
+}
+
+/* Header styling */
+.leave-table th {
+  background-color: #222;
+  color: #ccc;
+  font-weight: 900;
+}
+
+/* Row hover */
+.leave-table tr:hover {
+  background-color: #222;
+}
+
+/* Column size constraints */
+.leave-table td:nth-child(1),
+.leave-table th:nth-child(1) {
+  width: 30px;
+  text-align: center;
+}
+.leave-table td:nth-child(2) { width: 160px; }    /* Email */
+.leave-table td:nth-child(3) { width: 120px; }    /* Name */
+.leave-table th:nth-child(4) {
+  width: 50px;
+  text-align: left;
+}     /* Type */
+.leave-table td:nth-child(5) { width: 150px; }    /* Reason */
+.leave-table th:nth-child(6) {
+  width: 90px;
+  text-align: left;
+}    /* Date */
+.leave-table td:nth-child(6) { width: 120px; }    /* Date content */
+.leave-table td:nth-child(7) { width: 80px; }     /* Filed At */
+.leave-table th:nth-child(7) {
+  width: 100px;
+  text-align: left;
+}
+.leave-table td:nth-child(8) { width: 80px; }     /* Attachment */
+.leave-table td:nth-child(9) { width: 80px; }     /* Status */
+.leave-table td:nth-child(10) { width: 100px; }   /* Action */
+
+/* Status tags */
+.status {
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+}
+
+.status.pending {
+  color: orange;
+}
+.status.approved {
+  color: #4caf50;
+}
+.status.declined {
+  color: #f44336;
+}
+
+/* File link */
+a {
+  color: #61dafb;
+  font-size: 0.75rem;
+  text-decoration: underline;
+}
+
+/* Action buttons */
+.action-buttons {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.btn-approve,
+.btn-decline {
+  padding: 4px 8px;
+  font-size: 0.7rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s ease, transform 0.2s;
+}
+
+.btn-approve {
+  background-color: #4caf50;
+  color: white;
+}
+.btn-approve:hover {
+  background-color: #43a047;
+  transform: scale(1.03);
+}
+
+.btn-decline {
+  background-color: #f44336;
+  color: white;
+}
+.btn-decline:hover {
+  background-color: #d32f2f;
+  transform: scale(1.03);
+}
+
+/* Hide scrollbars */
+html, body {
+  overflow: hidden;
+}
+.table-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+/* Clickable cell for modal trigger */
+.clickable {
+  cursor: pointer;
+  color: #61dafb;
+  text-decoration: underline;
+}
+
+/* Modal styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+  background: #1e1e1e;
+  color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  max-width: 90%;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+  position: relative;
+  animation: slideUp 0.3s ease;
+   border: 3px solid #888;
+}
+
+.modal-content h3 {
+  margin-top: 0;
+  text-align: center;
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+
+.modal-content p {
+  font-size: 0.9rem;
+  text-align: center;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+.modal-content button {
+  margin-top: 15px;
+  background-color: #007bff;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.modal-content button:hover {
+  background-color: #0056b3;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

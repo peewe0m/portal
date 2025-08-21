@@ -1,0 +1,295 @@
+/* src/pages/dtr.css */
+
+.employee-page {
+  background-color: #111;
+  color: #f0f0f0;
+  padding: 2rem;
+  min-height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Search + Add row container */
+.search-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.search-container {
+  flex: 1;
+  width: 95%;
+  background-color: #1e1e1e;
+  margin-left: 0.5rem;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05); 
+  display: flex;
+  align-items: center;
+}
+
+.search-container input {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  background-color: #2c2c2c;
+  color: #fff;
+  border: 1px solid #333;
+}
+
+.search-container input::placeholder {
+  color: #aaa;
+}
+
+.add-button {
+  background-color: #504f4f;
+  color: white;
+  padding: 13px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-weight: bold;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.add-button:hover {
+  background-color: #333333;
+}
+
+/* Employee Table */
+.employee-table {
+  margin-top: 20px;
+  background-color: #1c1c1c;
+  border-radius: 8px;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.03);
+  padding: 10px;
+  color: white;
+}
+
+.table-header,
+.table-row {
+  display: grid;
+  grid-template-columns: 0.7fr 2fr 2fr 0.5fr; /* ID, Name, Role, Action */
+  padding: 10px;
+  border-bottom: 1px solid #444;
+  align-items: center;
+}
+
+.table-header {
+  font-weight: bold;
+  background-color: #2c2c2c;
+  border-radius: 4px;
+}
+
+.table-row:hover {
+  background-color: #2a2a2a;
+}
+
+/* Trash & Edit Icons */
+.edit-icon .delete-icon {
+  color: #504f4f;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+  justify-self: end;
+}
+
+.delete-icon:hover {
+  color: #ff3333;
+}
+
+.edit-icon:hover {
+  color: #4caf50;
+}
+
+/* Clickable name */
+.clickable-name {
+  color: #66b2ff;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.clickable-name:hover {
+  color: #99ccff;
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.modal-content {
+  width: 2000px;
+  
+}
+
+.modal-content {
+  
+  background-color: #1e1e1e;
+  color: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  width: 95%;
+  max-width: 1800px;
+  height: auto;
+  overflow: visible;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  text-align: left;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.modal-content h2 {
+  margin-top: 0;
+  color: #66b2ff;
+}
+
+.modal-content button {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #292929;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.modal-content button:hover {
+  background-color: #3a3a3a;
+}
+
+.modal-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem 1.5rem;
+  margin-top: 1rem;
+}
+
+.modal-grid p {
+  margin: 0;
+  font-size: 1rem;
+  color: #ccc;
+}
+
+.modal-grid strong {
+  color: #fff;
+}
+
+.modal-actions {
+  align-items: center;
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+
+.modal-actions button {
+  width: 100px;
+  padding: 10px 0;
+  background-color: #504f4f;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 0.85rem;
+  transition: background-color 0.2s ease;
+  text-align: center;
+}
+
+.dtr-table-container {
+  width: 100%;
+  overflow: visible;
+}
+
+.cutoff-card-container {
+  display: flex;
+  gap: 15px;
+  margin-top: 15px;
+  flex-wrap: wrap;
+}
+
+.cutoff-card {
+  background: #222;
+  color: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  flex: 1 1 30%;
+  min-width: 150px;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.cutoff-card:hover {
+  background: #333;
+}
+
+.add-card {
+  border: 2px dashed #555;
+}
+
+
+/* For the DTR table */
+.dtr-18x18-table {
+  margin-top: 2rem;
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed; /* Important: fixed table layout */
+  background-color: #1c1c1c;
+  color: #f0f0f0;
+}
+
+.dtr-18x18-table td {
+  border: 1px solid #444;
+  width: calc(100% / 18);  /* equally divide width */
+  height: 35px;            /* slightly smaller height */
+  background-color: #2c2c2c;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 0.78rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dtr-18x18-table .header-row-cell {
+  background-color: #333;
+  font-weight: bold;
+  color: #66b2ff;
+}
+
+.dtr-18x18-table td input {
+  width: 100%;
+  padding: 4px;
+  border: none;
+  background-color: #2b2b2b;
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.header-row-cell {
+  background-color: #444;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
